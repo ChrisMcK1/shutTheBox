@@ -1,4 +1,4 @@
-# games
+# Shut the Box Game
 
 First attempt at creating a simple table game called "Shut the Box" in python.
 
