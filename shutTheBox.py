@@ -9,7 +9,7 @@ import time
 
 ##Need to add """ """ notation to functions
 
-theBoard = [1, 2, 3,4,\
+theBoard = [1, 2, 3, 4,\
             5, 6, 7, 8, 9, \
             10]
 
