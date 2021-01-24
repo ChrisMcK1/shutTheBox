@@ -2,23 +2,24 @@
 
 import random
 import sys #to trigger game over for incorrect input
+import time
 
 #setting up the Board to show which number slot we're in, which will have an integer
 #until it is selected by the user to be removed from the board, then it will be 'X'
 
 ##Need to add """ """ notation to functions
 
-theBoard = ['1', '2', '3','4',\
-            '5', '6', '7', '8', '9', \
-            '10']
+theBoard = [1, 2, 3,4,\
+            5, 6, 7, 8, 9, \
+            10]
 
 #defining function for the visual of the board, starts with showing each integer 1 thru 10
 
 def printBoard(board):
-    print(board[0] + '|' + board[1] + '|' + board[2] + '|' \
-          + board[3] + '|' + board[4] + '|' + board[5] + '|' \
-          + board[6] + '|' + board[7] + '|' + board[8] + '|' \
-          + board[9] + '|')
+    print(str(board[0]) + '|' + str(board[1]) + '|' + str(board[2]) + '|' \
+          + str(board[3]) + '|' + str(board[4]) + '|' + str(board[5]) + '|' \
+          + str(board[6]) + '|' + str(board[7]) + '|' + str(board[8]) + '|' \
+          + str(board[9]) + '|')
 
 
 
@@ -111,6 +112,5 @@ diceRollFunc()
 
        
 winCon()
-
 
 
