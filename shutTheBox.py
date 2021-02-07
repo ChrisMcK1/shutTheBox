@@ -3,6 +3,7 @@
 import random
 import sys #to trigger game over for incorrect input
 import time
+import itertools #to calculate all possible play comibinations based on available board integers
 
 #setting up the Board to show which number slot we're in, which will have an integer
 #until it is selected by the user to be removed from the board, then it will be 'X'
@@ -14,7 +15,6 @@ theBoard = [1, 2, 3, 4,\
             10]
 
 #defining function for the visual of the board, starts with showing each integer 1 thru 10
-
 def printBoard(board):
     print(str(board[0]) + '|' + str(board[1]) + '|' + str(board[2]) + '|' \
           + str(board[3]) + '|' + str(board[4]) + '|' + str(board[5]) + '|' \
@@ -22,7 +22,7 @@ def printBoard(board):
           + str(board[9]) + '|')
 
 
-
+#function to check if game has been won, need to expand on this to give the option to start a new game
 def winCon():
     if theBoard == ['X', 'X', 'X','X',\
             'X', 'X', 'X', 'X', 'X', \
@@ -30,7 +30,12 @@ def winCon():
         print('Congratulations, you\'ve won!')
         time.sleep(2)
         print('Goodbye!')
-        
+
+
+#function to show all available plays, using itertools module
+#def combos():
+    
+            
 
 def diceRollFunc():
     while theBoard != ['X', 'X', 'X','X',\
@@ -46,6 +51,27 @@ numbers to remove from the board.')
                 print('Here\'s the board again, enter one number \
 to at a time to remove it from the board.')
             printBoard(theBoard)
+            print('Here are your available plays.')
+            availablePlay = []   #empty list that will then populate with current integers on the board
+            for i in theBoard[:10]:
+                try:
+                    
+                    if i == 'X':
+                        continue
+                    else:
+                        availablePlay.append(i)
+                        
+                except ValueError:
+                    continue
+                except TypeError:
+                    continue
+                
+            result = [seq for i in range(len(availablePlay), 0 , -1) for seq in itertools.combinations(availablePlay, i) if sum(seq) == diceRoll]  #itertools sequence to create list variable containing all available plays
+            if result == []:
+                print('You have none. Game over.')
+                sys.exit
+            else:
+                print(result)
             newBoard = input()
             newBoard1 = 0
             newBoard2 = 0
@@ -112,5 +138,4 @@ diceRollFunc()
 
        
 winCon()
-
 
