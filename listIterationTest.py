@@ -1,34 +1,26 @@
+import itertools
 
-theBoard = [1, 'X', 3, 4,\
-            'X', 'X', 'X', 'X', 9, \
+
+theBoard = [1, 2, 3, 4,\
+            'X', 'X', 'X', 8, 9, \
             'X']
 testList = [1, 2, 3, 4, 5, 6]
 
-diceRoll = 6
+diceRoll = 8
 
-
-for i in theBoard[0:(diceRoll-1)]:
+availablePlay = []   #empty list that will then populate with current integers on the board
+for i in theBoard[:10]:
     try:
-        if i == diceRoll:
-            print(i)
-
+        
+        if i == 'X':
+            continue
         else:
-            print(i+1)
+            availablePlay.append(i)
+            
     except ValueError:
         continue
     except TypeError:
         continue
-
-def combinations(values):
-    if len(values) == 0:
-        return [[]]
-    combos = []
-    for val in combinations(values[1:]):
-        combos += [val, val + [values[0]]]
-    return combos
-
-print (combinations([1]))  # Expecting: [[1]]
-print (combinations([1, 2])) # Expecting: [1], [2], [1 ,2]
-print (combinations([1, 2, 3])) #Expecting: [[1], [2], [3], [1, 2], [2, 3], [1, 2, 3]]
-
-                
+    
+result = [seq for i in range(len(availablePlay), 0 , -1) for seq in itertools.combinations(availablePlay, i) if sum(seq) == diceRoll]  #itertools sequence to create list variable containing all available plays
+print(result)
