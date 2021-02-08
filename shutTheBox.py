@@ -8,11 +8,13 @@ import itertools #to calculate all possible play comibinations based on availabl
 #setting up the Board to show which number slot we're in, which will have an integer
 #until it is selected by the user to be removed from the board, then it will be 'X'
 
-##Need to add """ """ notation to functions
+
 
 theBoard = [1, 2, 3, 4,\
             5, 6, 7, 8, 9, \
             10]
+
+##Need to add """ """ notation to functions
 
 #defining function for the visual of the board, starts with showing each integer 1 thru 10
 def printBoard(board):
@@ -31,6 +33,20 @@ def winCon():
         time.sleep(2)
         print('Goodbye!')
 
+def newGame():
+    while True:
+        print('Would you like to start a new game?  y/n?')
+        response = input()
+        if response == 'n':
+            print('Goodbye!')
+            sys.exit()
+        if response == 'y':
+            diceRollFunc()
+        else:
+            continue
+    
+
+    
 
 #function to show all available plays, using itertools module
 #def combos():
@@ -38,6 +54,9 @@ def winCon():
             
 
 def diceRollFunc():
+    theBoard = [1, 2, 3, 4,\
+            5, 6, 7, 8, 9, \
+            10]
     while theBoard != ['X', 'X', 'X','X',\
             'X', 'X', 'X', 'X', 'X', \
             'X']:
@@ -53,7 +72,7 @@ to at a time to remove it from the board.')
             printBoard(theBoard)
             print('Here are your available plays.')
             availablePlay = []   #empty list that will then populate with current integers on the board
-            for i in theBoard[:10]:
+            for i in theBoard[:10]:  #iterate through the board,  creating a new list to remove all "X' and keep only integers
                 try:
                     
                     if i == 'X':
@@ -69,7 +88,8 @@ to at a time to remove it from the board.')
             result = [seq for i in range(len(availablePlay), 0 , -1) for seq in itertools.combinations(availablePlay, i) if sum(seq) == diceRoll]  #itertools sequence to create list variable containing all available plays
             if result == []:
                 print('You have none. Game over.')
-                sys.exit
+                
+                newGame()
             else:
                 print(result)
             newBoard = input()
@@ -81,24 +101,24 @@ to at a time to remove it from the board.')
                     continue
             except ValueError:
                 print('That is an invalid input, start over.')
-                sys.exit()
+                newGame()
             except IndexError:
                 print('That is an invalid input, start over.')
-                sys.exit()
+                newGame()
             if int(newBoard) > 0 and int(newBoard) < 11 and int(newBoard) <= diceRoll:
                 theBoard[int(newBoard)-1] = 'X'
             if (int(diceRoll) - int(newBoard)) == 0:
                 break
             if int(newBoard) > int(diceRoll):
                 print('That is an invalid input, start over.')
-                sys.exit()
+                newGame()
             if (int(diceRoll) - int(newBoard)) != 0:
                 print('Please enter another number to remove')
                 newBoard1 = input()
                 theBoard[int(newBoard1)-1] = 'X'
             if (int(newBoard1) + int(newBoard)) > diceRoll:
                 print('That is an invalid input, start over.')
-                sys.exit()
+                newGame()
             if (int(diceRoll) - int(newBoard) - int(newBoard1)) == 0:
                 break
             if (int(diceRoll) - int(newBoard) - int(newBoard1)) != 0:
@@ -107,7 +127,7 @@ to at a time to remove it from the board.')
                 theBoard[int(newBoard2)-1] = 'X'
             if (int(newBoard1) + int(newBoard2) + int(newBoard)) > diceRoll:
                 print('That is an invalid input, start over.')
-                sys.exit()
+                newGame()
             if (int(diceRoll) - int(newBoard) - int(newBoard1) - int(newBoard2)) == 0:
                 break
             if (int(diceRoll) - int(newBoard) - int(newBoard1) - int(newBoard2)) != 0:
@@ -116,7 +136,7 @@ to at a time to remove it from the board.')
                 theBoard[int(newBoard3)-1] = 'X'
             if (int(newBoard1) + int(newBoard2) + int(newBoard3) + int(newBoard)) > diceRoll:
                 print('That is an invalid input, start over.')
-                sys.exit()
+                newGame()
             if (int(diceRoll) - int(newBoard) - int(newBoard1) - int(newBoard2) - int(newBoard3)) == 0:
                 break
             
@@ -135,6 +155,7 @@ print('Welcome to Shut the Box! Here is your board, let\'s get started.')
 printBoard(theBoard)
 
 diceRollFunc()
+
 
        
 winCon()
