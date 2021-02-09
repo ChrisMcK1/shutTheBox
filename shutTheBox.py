@@ -68,7 +68,7 @@ def diceRollFunc():
                 print('You rolled a ' + str(diceRoll) + '.  Now choose which \
 numbers to remove from the board.')
                 print('Here\'s the board again, enter one number \
-to at a time to remove it from the board.')
+at a time to remove it from the board.')
             printBoard(theBoard)
             print('Here are your available plays.')
             availablePlay = []   #empty list that will then populate with current integers on the board
