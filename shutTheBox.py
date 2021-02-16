@@ -14,7 +14,7 @@ theBoard = [1, 2, 3, 4,\
             5, 6, 7, 8, 9, \
             10]
 
-##Need to add """ """ notation to functions
+## Need to add """ """ notation to functions
 
 #defining function for the visual of the board, starts with showing each integer 1 thru 10
 def printBoard(board):
@@ -26,12 +26,14 @@ def printBoard(board):
 
 #function to check if game has been won, need to expand on this to give the option to start a new game
 def winCon():
+    winTotal = 0
     if theBoard == ['X', 'X', 'X','X',\
             'X', 'X', 'X', 'X', 'X', \
             'X']:
         print('Congratulations, you\'ve won!')
-        time.sleep(2)
-        print('Goodbye!')
+        winTotal += 1
+        print('You\'ve won ' + str(winTotal) + ' games.')
+    
 
 def newGame():
     while True:
@@ -159,4 +161,3 @@ diceRollFunc()
 
        
 winCon()
-
